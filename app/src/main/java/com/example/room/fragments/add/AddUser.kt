@@ -10,35 +10,44 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.viewbinding.ViewBinding
 import com.example.room.R
+import com.example.room.core.BaseFragment
 import com.example.room.data.ViewModel
 import com.example.room.data.User
 import com.example.room.databinding.FragmentAddUserBinding
 
 
-
-class addUser : Fragment() {
+class addUser : BaseFragment<FragmentAddUserBinding>() {
   lateinit var mViewModel: ViewModel
+    private var viewBinding : FragmentAddUserBinding? = null
+    protected val binding get() = checkNotNull(viewBinding)
 
+    override fun initBinding(inflater: LayoutInflater, container: ViewGroup?) =
+        FragmentAddUserBinding.inflate(inflater,container,false)
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewBinding?.button?.setOnClickListener{
+            insertDatainDatabase()
+        }
+        super.onViewCreated(view, savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
         // Inflate the layout for this fragment
-        val binding = FragmentAddUserBinding.inflate(inflater)
+        viewBinding = initBinding(inflater,container)
 
-        binding.button.setOnClickListener{
-            insertDatainDatabase(binding)
-        }
+
         mViewModel = ViewModelProvider(this).get(ViewModel::class.java)
-        return binding.root
+        return  viewBinding!!.root
     }
 
 
 
-    private fun insertDatainDatabase(binding: FragmentAddUserBinding) {
+    private fun insertDatainDatabase() {
         val firstName = binding.editTextTextPersonName.text.toString()
         val lastName = binding.editTextTextPersonName2.text.toString()
         val Age = binding.editTextTextPersonName3.text
