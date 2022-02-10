@@ -3,18 +3,16 @@ package com.example.room.fragments.add
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.viewbinding.ViewBinding
 import com.example.room.R
 import com.example.room.core.BaseFragment
-import com.example.room.data.ViewModel
-import com.example.room.data.User
+import com.example.room.ViewModel.ViewModel
+import com.example.room.model.User
 import com.example.room.databinding.FragmentAddUserBinding
 
 

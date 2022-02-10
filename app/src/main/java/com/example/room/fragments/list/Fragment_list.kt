@@ -1,7 +1,6 @@
 package com.example.room.fragments.list
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.room.R
+import com.example.room.RecyclerView.Adapter
 import com.example.room.core.BaseFragment
-import com.example.room.data.ViewModel
-import com.example.room.databinding.FragmentAddUserBinding
+import com.example.room.ViewModel.ViewModel
 import com.example.room.databinding.FragmentListBinding
 
 

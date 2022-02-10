@@ -21,5 +21,23 @@
         <action
             android:id="@+id/action_fragment_list_to_addUser"
             app:destination="@id/addUser" />
+        <action
+            android:id="@+id/action_fragment_list_to_updateFragment"
+            app:destination="@id/updateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.room.fragments.update.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/action_updateFragment_to_fragment_list"
+            app:destination="@id/fragment_list" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.example.room.model.User" />
+        <action
+            android:id="@+id/action_updateFragment_to_fragment_list2"
+            app:destination="@id/fragment_list" />
     </fragment>
 </navigation>

@@ -1,13 +1,17 @@
-package com.example.room.data
+package com.example.room.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+
+@Parcelize
 @Entity(tableName = "userTable")
-public data class User(
+data class User(
     @PrimaryKey(autoGenerate = true)
     val id:Int,
     val name: String,
     val female:String,
     val age: Int
-)
+): Parcelable
