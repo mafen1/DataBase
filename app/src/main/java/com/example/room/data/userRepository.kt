@@ -12,4 +12,10 @@ class userRepository(private val dao: userDAO) {
     suspend fun updateUser(user: User){
         dao.updateUser(user)
     }
+    suspend fun deleteUser(user: User){
+        dao.deleteUser(user)
+    }
+    suspend fun deleteAllUsers(){
+        dao.deleteAllUsers()
+    }
 }

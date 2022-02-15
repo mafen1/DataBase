@@ -1,9 +1,9 @@
 package com.example.room.fragments.list
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,7 +26,7 @@ class fragment_list : BaseFragment<FragmentListBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initAdapter()
-
+        init()
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
         viewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
             adapter.setData(user)
@@ -55,5 +55,34 @@ class fragment_list : BaseFragment<FragmentListBinding>() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
+    fun init(){
+        setHasOptionsMenu(true)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_delete) {
+            deleteAllUser()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteAllUser() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes") { _, _ ->
+            viewModel.deleteAllUsers()
+            Toast.makeText(requireContext(),
+                "User Delete",
+                Toast.LENGTH_LONG)
+                .show()
+
+        }
+        builder.setNegativeButton("No") { _, _ ->}
+        builder.setTitle("You want delete everything")
+        builder.setTitle("Are you sure you want to delete everything?")
+        builder.create().show()
+
+    }
 }
